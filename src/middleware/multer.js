@@ -17,15 +17,16 @@ const maxSize = 1 * 1024 * 1024; // 1Mb
 // }
 async function createDir(path) {
   try {
-    const isDirExist = await fs.promises.exists(path);
-    if (!isDirExist) {
+    await fs.promises.access(path, fs.constants.F_OK);
+  } catch (error) {
+    if (error.code === 'ENOENT') {
       await fs.promises.mkdir(path, {
         recursive: true,
       });
+    } else {
+      console.error("Error accessing directory:", error);
+      throw error;
     }
-  } catch (error) {
-    console.error("Error creating directory:", error);
-    throw error;
   }
 }
 
