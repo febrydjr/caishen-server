@@ -65,13 +65,13 @@ app.use("/api/public", express.static(path.resolve(__dirname, "../public")));
 // //#endregion
 
 // //#region CLIENT
-const clientPath = "../../client/build";
-app.use(express.static(join(__dirname, clientPath)));
+// const clientPath = "../../client/build";
+// app.use(express.static(join(__dirname, clientPath)));
 
-// Serve the HTML page
-app.get("*", (req, res) => {
-    res.sendFile(join(__dirname, clientPath, "index.html"));
-});
+// // Serve the HTML page
+// app.get("*", (req, res) => {
+//     res.sendFile(join(__dirname, clientPath, "index.html"));
+// });
 
 //#endregion
 
