@@ -16,15 +16,15 @@ const {
 
 const PORT = process.env.PORT || 8000;
 const app = express();
-app.use(
-    cors({
-        origin: [
-            process.env.WHITELISTED_DOMAIN &&
-                process.env.WHITELISTED_DOMAIN.split(","),
-        ],
-    })
-);
-// app.use(cors({ origin: ["http://localhost:3000"] }));
+// app.use(
+//     cors({
+//         origin: [
+//             process.env.WHITELISTED_DOMAIN &&
+//                 process.env.WHITELISTED_DOMAIN.split(","),
+//         ],
+//     })
+// );
+app.use(cors({ origin: ["https://thecaishen.vercel.app"] }));
 app.use(express.json());
 
 //#region API ROUTES
