@@ -7,6 +7,7 @@ require("dotenv").config({
   path: path.resolve(__dirname, "../.env"),
 });
 const PORT = process.env.PORT || 8000;
+app.use(cors({ origin: ["https://thecaishen.vercel.app"] }));
 app.use(
     cors({
         origin: [
