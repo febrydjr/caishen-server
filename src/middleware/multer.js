@@ -47,7 +47,11 @@ const storage = multer.diskStorage({
   destination: async function (req, file, cb) {
     const folder = file.fieldname === "image" ? "product" : file.fieldname;
     const dirPath = path.join(defaultPath, folder);
+    
+    // Create the parent directories leading up to the final directory
+    await createDir(defaultPath);
     await createDir(dirPath);
+    
     cb(null, dirPath);
   },
   filename: function (req, file, cb) {
@@ -56,7 +60,6 @@ const storage = multer.diskStorage({
     cb(null, fileName);
   },
 });
-
 function fileFilter(req, file, cb) {
   const fileType = getType(file);
   const fileSize = parseInt(req.headers["content-length"]); // get the size
