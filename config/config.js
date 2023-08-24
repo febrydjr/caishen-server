@@ -11,6 +11,7 @@ module.exports = {
     host: process.env.db_host,
     port: process.env.db_port,
     dialect: "mysql",
+    dialectModule: mysql2,
     dialectOptions: {
       ssl: {
         rejectUnauthorized: true,
@@ -24,6 +25,7 @@ module.exports = {
     host: process.env.db_host,
     port: process.env.db_port,
     dialect: "mysql",
+    dialectModule: mysql2,
     dialectOptions: {
       ssl: {
         rejectUnauthorized: true,
@@ -37,6 +39,7 @@ module.exports = {
     host: process.env.db_host,
     port: process.env.db_port,
     dialect: "mysql",
+    dialectModule: mysql2,
     dialectOptions: {
       ssl: {
         rejectUnauthorized: true,
