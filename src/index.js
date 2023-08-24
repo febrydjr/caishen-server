@@ -1,21 +1,12 @@
-// require("dotenv/config");
+const express = require("express");
+const app = express();
+app.use(express.json());
 const path = require("path");
+const cors = require("cors");
 require("dotenv").config({
   path: path.resolve(__dirname, "../.env"),
 });
-const express = require("express");
-const cors = require("cors");
-const { join } = require("path");
-const {
-  authRouter,
-  profileRouter,
-  productRouter,
-  cartRouter,
-  transactionRouter,
-} = require("./routes");
-
 const PORT = process.env.PORT || 8000;
-const app = express();
 app.use(
     cors({
         origin: [
@@ -24,8 +15,16 @@ app.use(
         ],
     })
 );
+const db = require("../models");
+const {
+  authRouter,
+  profileRouter,
+  productRouter,
+  cartRouter,
+  transactionRouter,
+} = require("./routes");
+
 // app.use(cors({ origin: ["http://localhost:3000"] }));
-app.use(express.json());
 
 //#region API ROUTES
 
