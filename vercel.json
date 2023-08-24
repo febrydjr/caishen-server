@@ -1,3 +1,27 @@
 {
-    "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
-  }
+  "rewrites": [{ "source": "/(.*)", "destination": "/api" }],
+  "version": 2,
+  "builds": [
+      {
+          "src": "src/index.js",
+          "use": "@vercel/node"
+      }
+  ],
+  "routes": [
+      {
+          "src": "/(.*)",
+          "dest": "src/index.js",
+          "methods": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "OPTIONS",
+              "DELETE",
+              "HEAD",
+              "CONNECT",
+              "TRACE"
+          ]
+      }
+  ]
+}
