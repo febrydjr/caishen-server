@@ -28,7 +28,7 @@ async function createDir(path) {
 //       throw error;
 //     }
 //   }
-}
+// }
 
 function getType(file) {
   return file.mimetype.split("/")[1];
