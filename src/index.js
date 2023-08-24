@@ -29,6 +29,7 @@ app.use("/api/profile", profileRouter);
 app.use("/api/products", productRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/transactions", transactionRouter);
+app.use("/api/public", express.static(path.resolve(__dirname, "../public")));
 
 app.listen(PORT, (err) => {
   if (err) {
