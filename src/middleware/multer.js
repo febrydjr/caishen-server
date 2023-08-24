@@ -7,12 +7,25 @@ const defaultPath = "public/images";
 const fileTypes = ["jpg", "jpeg", "png", "gif", "webp", "svg"];
 const maxSize = 1 * 1024 * 1024; // 1Mb
 
+// async function createDir(path) {
+//   const isDirExist = fs.existsSync(path);
+//   if (!isDirExist) {
+//     await fs.promises.mkdir(path, {
+//       recursive: true,
+//     });
+//   }
+// }
 async function createDir(path) {
-  const isDirExist = fs.existsSync(path);
-  if (!isDirExist) {
-    await fs.promises.mkdir(path, {
-      recursive: true,
-    });
+  try {
+    const isDirExist = await fs.promises.exists(path);
+    if (!isDirExist) {
+      await fs.promises.mkdir(path, {
+        recursive: true,
+      });
+    }
+  } catch (error) {
+    console.error("Error creating directory:", error);
+    throw error;
   }
 }
 
