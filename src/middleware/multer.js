@@ -1,4 +1,4 @@
-const fs = require("fs").promises;
+const fs = require("fs");
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
 const multer = require("multer");
@@ -7,21 +7,12 @@ const defaultPath = "public/images";
 const fileTypes = ["jpg", "jpeg", "png", "gif", "webp", "svg"];
 const maxSize = 1 * 1024 * 1024; // 1Mb
 
-// async function createDir(path) {
-//   const isDirExist = fs.existsSync(path);
-//   if (!isDirExist) {
-//     await fs.promises.mkdir(path, {
-//       recursive: true,
-//     });
-//   }
-// }
-async function createDir(dirPath) {
-  try {
-    await fs.mkdir(dirPath, { recursive: true });
-  } catch (error) {
-    if (error.code !== 'EEXIST') {
-      throw error;
-    }
+async function createDir(path) {
+  const isDirExist = fs.existsSync(path);
+  if (!isDirExist) {
+    await fs.promises.mkdir(path, {
+      recursive: true,
+    });
   }
 }
 
@@ -29,30 +20,12 @@ function getType(file) {
   return file.mimetype.split("/")[1];
 }
 
-// const storage = multer.diskStorage({
-//   destination: async function (req, file, cb) {
-//     const folder = file.fieldname === "image" ? "product" : file.fieldname;
-//     const path = `${defaultPath}/${folder}`;
-//     await createDir(path);
-//     cb(null, path);
-//   },
-//   filename: function (req, file, cb) {
-//     const fileType = getType(file);
-//     const fileName = `${uuidv4()}.${fileType}`;
-//     cb(null, fileName);
-//   },
-// });
-
 const storage = multer.diskStorage({
   destination: async function (req, file, cb) {
     const folder = file.fieldname === "image" ? "product" : file.fieldname;
-    const dirPath = path.join(defaultPath, folder);
-    
-    // Create the parent directories leading up to the final directory
-    await createDir(defaultPath);
-    await createDir(dirPath);
-    
-    cb(null, dirPath);
+    const path = `${defaultPath}/${folder}`;
+    await createDir(path);
+    cb(null, path);
   },
   filename: function (req, file, cb) {
     const fileType = getType(file);
@@ -60,6 +33,7 @@ const storage = multer.diskStorage({
     cb(null, fileName);
   },
 });
+
 function fileFilter(req, file, cb) {
   const fileType = getType(file);
   const fileSize = parseInt(req.headers["content-length"]); // get the size

@@ -8,14 +8,14 @@ require("dotenv").config({
 });
 const PORT = process.env.PORT || 8000;
 app.use(cors({ origin: ["https://thecaishen.vercel.app"] }));
-app.use(
-    cors({
-        origin: [
-            process.env.WHITELISTED_DOMAIN &&
-                process.env.WHITELISTED_DOMAIN.split(","),
-        ],
-    })
-);
+// app.use(
+//     cors({
+//         origin: [
+//             process.env.WHITELISTED_DOMAIN &&
+//                 process.env.WHITELISTED_DOMAIN.split(","),
+//         ],
+//     })
+// );
 const {
   authRouter,
   profileRouter,
