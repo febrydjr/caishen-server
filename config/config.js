@@ -2,7 +2,7 @@ const path = require("path");
 require("dotenv").config({
   path: path.resolve(__dirname, "../.env"),
 });
-
+//tambahin dialect
 module.exports = {
   development: {
     username: process.env.db_username,
