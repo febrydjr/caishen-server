@@ -15,7 +15,6 @@ app.use(
         ],
     })
 );
-const db = require("../models");
 const {
   authRouter,
   profileRouter,
