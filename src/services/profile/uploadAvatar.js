@@ -11,9 +11,9 @@ async function uploadAvatar(account, file) {
 
     await User.update({ avatar: path }, { where: { id } });
 
-    // if (oldAvatar.avatar) {
-    //   await fs.unlink(oldAvatar.avatar);
-    // }
+    if (oldAvatar.avatar) {
+      await fs.unlink(oldAvatar.avatar);
+    }
 
     return messages.success("Profile image has been changed");
   } catch (error) {

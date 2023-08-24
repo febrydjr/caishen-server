@@ -31,24 +31,6 @@ app.use("/api/cart", cartRouter);
 app.use("/api/transactions", transactionRouter);
 app.use("/api/public", express.static(path.resolve(__dirname, "../public")));
 
-app.use((req, res, next) => {
-  if (req.path.includes("/api/")) {
-      res.status(404).send("Not found !");
-  } else {
-      next();
-  }
-});
-
-// error
-app.use((err, req, res, next) => {
-  if (req.path.includes("/api/")) {
-      console.error("Error : ", err.stack);
-      res.status(500).send("Error !");
-  } else {
-      next();
-  }
-});
-
 app.listen(PORT, (err) => {
   if (err) {
     console.log(`ERROR: ${err}`);
