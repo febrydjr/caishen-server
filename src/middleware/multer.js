@@ -7,27 +7,27 @@ const defaultPath = "public/images";
 const fileTypes = ["jpg", "jpeg", "png", "gif", "webp", "svg"];
 const maxSize = 1 * 1024 * 1024; // 1Mb
 
-// async function createDir(path) {
-//   const isDirExist = fs.existsSync(path);
-//   if (!isDirExist) {
-//     await fs.promises.mkdir(path, {
-//       recursive: true,
-//     });
-//   }
-// }
 async function createDir(path) {
-  try {
-    await fs.promises.access(path, fs.constants.F_OK);
-  } catch (error) {
-    if (error.code === 'ENOENT') {
-      await fs.promises.mkdir(path, {
-        recursive: true,
-      });
-    } else {
-      console.error("Error accessing directory:", error);
-      throw error;
-    }
+  const isDirExist = fs.existsSync(path);
+  if (!isDirExist) {
+    await fs.promises.mkdir(path, {
+      recursive: true,
+    });
   }
+}
+// async function createDir(path) {
+//   try {
+//     await fs.promises.access(path, fs.constants.F_OK);
+//   } catch (error) {
+//     if (error.code === 'ENOENT') {
+//       await fs.promises.mkdir(path, {
+//         recursive: true,
+//       });
+//     } else {
+//       console.error("Error accessing directory:", error);
+//       throw error;
+//     }
+//   }
 }
 
 function getType(file) {
