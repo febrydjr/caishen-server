@@ -39,7 +39,7 @@ app.use("/api/products", productRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/transactions", transactionRouter);
 
-app.use("/api/public", express.static(path.resolve(__dirname, "../public")));
+// app.use("/api/public", express.static(path.resolve(__dirname, "../public")));
 
 // // ===========================
 
