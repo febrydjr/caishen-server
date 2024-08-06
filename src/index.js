@@ -24,7 +24,7 @@ const app = express();
 //         ],
 //     })
 // );
-app.use(cors({ origin: ["https://thecaishen.vercel.app"] }));
+app.use(cors());
 app.use(express.json());
 
 //#region API ROUTEfgfgS
