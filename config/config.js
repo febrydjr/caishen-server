@@ -14,7 +14,9 @@ module.exports = {
     dialectModule: require('mysql2'),
     dialectOptions: {
       ssl: {
-        rejectUnauthorized: true,
+        ca: process.env.DB_CA,
+        require: true,
+        rejectUnauthorized: false,
       },
     },
   },
@@ -28,7 +30,9 @@ module.exports = {
     dialectModule: require('mysql2'),
     dialectOptions: {
       ssl: {
-        rejectUnauthorized: true,
+        ca: process.env.DB_CA,
+        require: true,
+        rejectUnauthorized: false,
       },
     },
   },
@@ -42,7 +46,9 @@ module.exports = {
     dialectModule: require('mysql2'),
     dialectOptions: {
       ssl: {
-        rejectUnauthorized: true,
+        ca: process.env.DB_CA,
+        require: true,
+        rejectUnauthorized: false,
       },
     },
   },
